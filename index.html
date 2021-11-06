@@ -17,22 +17,28 @@
       <main>
         <header>
           <h1 v-text="sitename"></h1>
-          <button>
+          <button @click="showCheckout">
             {{ cartItemCount}}
             <span class="fas fa-cart-plus"></span> Checkout
           </button>
         </header>
-        <figure>
-          <img v-bind:src="product.image" />
-        </figure>
-        <h2 v-text="product.title"></h2>
-        <p v-html="product.description"></p>
-        <p>Price: {{product.prices}}</p>
-        <p>Available Stock: {{product.availableInventory}}</p>
-        <button v-on:click="addToCart" v-if="canAddToCart">Add to Cart</button>
-        <button disabled="disabled" v-else>Add to cart</button>
-        <div v-if="showProduct"></div>
-        <div v-else></div>
+        <div v-if="showProduct">
+          <figure>
+            <img v-bind:src="product.image" />
+          </figure>
+          <h2 v-text="product.title"></h2>
+          <p v-html="product.description"></p>
+          <p >Price: {{product.prices}}</p>
+          <p>Available Stock: {{product.availableInventory}}</p>
+          <button v-on:click="addToCart" v-if="canAddToCart">
+            Add to Cart
+          </button>
+          <button disabled="disabled" v-else>Add to cart</button>
+        </div>
+
+        <div v-else>
+          <h1>Checking Out</h1>
+        </div>
       </main>
     </div>
 
@@ -47,12 +53,12 @@
             description:
               "A 25 Pound bag of <em>irresistible</em>, " +
               "organic goodness for your cat.",
-            prices: 2000,
+            prices: 20,
             image: "cat.jpg",
             availableInventory: 5,
-            showProduct: true,
           }, //end product
           cart: [],
+          showProduct: true,
         }, //end data
         methods: {
           addToCart() {
