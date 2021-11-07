@@ -28,7 +28,7 @@
           </figure>
           <h2 v-text="product.title"></h2>
           <p v-html="product.description"></p>
-          <p >Price: {{product.prices}}</p>
+          <p>Price: {{product.prices}}</p>
           <p>Available Stock: {{product.availableInventory}}</p>
           <button v-on:click="addToCart" v-if="canAddToCart">
             Add to Cart
@@ -38,9 +38,95 @@
 
         <div v-else>
           <h1>Checking Out</h1>
+          <p>
+            <strong>First Name:</strong>
+            <input v-model.trim="order.firstName" />
+          </p>
+
+          <p>
+            <strong>Last Name:</strong>
+            <input v-model.trim="order.lastName" />
+          </p>
+
+          <p>
+            <strong>Address:</strong>
+            <input v-model="order.address" />
+          </p>
+
+          <p>
+            <strong>City:</strong>
+            <input type="order.City" />
+          </p>
+
+          <p>
+            <strong>State: </strong>
+            <select v-model="order.state">
+              <option disabled>State</option>
+              <!-- <option v-bind:value="States.AL">AL</option>
+              <option v-bind:value="States.AK">AK</option>
+              <option v-bind:value="States.AZ">AZ</option>
+              <option v-bind:value="States.AR">AR</option>
+              <option v-bind:value="States.CA">CA</option>
+              <option v-bind:value="States.CO">CO</option>
+              <option v-bind:value="States.CT">CT</option>
+              <option v-bind:value="States.DE">DE</option>
+              <option v-bind:value="States.DC">DC</option> -->
+
+              <option v-for="(state, key) in States" v-bind:value="state">
+                {{key}}
+              </option>
+            </select>
+          </p>
+
+          <p>
+            <strong>Zip/Postal Code:</strong>
+            <input v-model.number="order.Zip" />
+          </p>
+
+          <p>
+            <input
+              type="checkbox"
+              id="gift"
+              value="true"
+              v-model="order.gift"
+              v-bind:true-value="order.sendGift"
+              v-bind:false-value="order.dontSendGift"
+            />
+            <label for="gift">Ship As Gift</label>
+          </p>
+
+          <p>
+            <input type="radio" id="home" value="Home" v-model="order.method" />
+            <label for="home">Home</label>
+            <input
+              type="radio"
+              id="business"
+              value="Business"
+              v-model="order.method"
+            /><label for="business">Business</label>
+          </p>
+
+          <h2>Order Information</h2>
+          <p>FirstName: {{order.firstName}}</p>
+          <p>LastName : {{order.lastName}}</p>
+          <p>Address : {{order.address}}</p>
+          <p>City : {{order.City}}</p>
+          <p>Zip : {{order.Zip}}</p>
+          <p>State : {{order.state}}</p>
+
+          <p>Sending as gift? {{order.gift}}</p>
+
+          <!-- <p v-if="order.gift">We will ship your order has gift</p> -->
+          <!-- <p v-else></p> -->
+
+          <p>Method: {{order.method}}</p>
+
+          <button @click="submitForm">Place Order</button>
         </div>
       </main>
     </div>
+
+    <!-- Vue instance (Vue root file) -->
 
     <script>
       var webstore = new Vue({
@@ -59,6 +145,30 @@
           }, //end product
           cart: [],
           showProduct: true,
+          order: {
+            firstName: "",
+            lastName: "",
+            address: "",
+            City: "",
+            Zip: "",
+            gift: "",
+            state: "",
+            method: "",
+            sendGift: "Send as Gift",
+            dontSendGift: "Do not send as Gift",
+          },
+
+          States: {
+            AL: "Alabama",
+            AK: "Alaska",
+            AZ: "Arizona",
+            AR: "Arkansas",
+            CA: "California",
+            CO: "Colorado",
+            CT: "Connecticut",
+            DE: "Delaware",
+            DC: "District of Columbia",
+          },
         }, //end data
         methods: {
           addToCart() {
@@ -67,6 +177,10 @@
 
           showCheckout() {
             this.showProduct = this.showProduct ? false : true;
+          },
+
+          submitForm() {
+            alert("Order Submited");
           },
         }, //end method
         computed: {
