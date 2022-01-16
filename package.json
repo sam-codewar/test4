@@ -1,0 +1,23 @@
+{
+  "name": "nodetest",
+  "version": "1.0.0",
+  "description": "learningnode",
+  "main": "mustache-test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sam-codewar/test4.git"
+  },
+  "author": "Samuel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sam-codewar/test4/issues"
+  },
+  "homepage": "https://github.com/sam-codewar/test4#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mustache": "^4.2.0"
+  }
+}

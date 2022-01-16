@@ -6,6 +6,7 @@ let products = [
                 "A 25 pound bad of <em>irrestitable</em>, " +
                 " organic goodness for your cat.",
               "price": 20.00,
+
               "image": "cat.jpg",
               "availableInventory": 10,
               "rating": 3,
